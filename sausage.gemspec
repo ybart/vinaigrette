@@ -6,11 +6,11 @@ require 'sausage/version'
 Gem::Specification.new do |gem|
   gem.name          = "sausage"
   gem.version       = Sausage::VERSION
-  gem.authors       = ["Yvan BARTHÉLEMY"]
+  gem.authors       = ["Yvan BARTHÉLEMY"]
   gem.email         = ["ybarthelemy@direct-streams.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Custom serializable ActiveModel object.}
+  gem.summary       = %q{Provides a custom serializable ActiveModel object with ActiveModel validations and ActiveRecord associations.}
+  gem.homepage      = "http://ybart.github.com/sausage"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

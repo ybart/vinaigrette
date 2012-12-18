@@ -1,6 +1,15 @@
 # Sausage
 
-TODO: Write a gem description
+Sausage is a gem providing a custom ActiveModel object that can be used
+as a serialized attribute of an ActiveRecord object.
+
+## Features
+
+    - Serializable ActiveModel objects.
+    - Custom accessors with casting support default values.
+    - Supports Rails validations.
+    - Supports Rails belongs_to associations.
+    - Casting of ruby booleans from strings.
 
 ## Installation
 
@@ -19,6 +28,18 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+Create a custom Sausage::Model subclass:
+
+    ...
+
+Add your attributes using 'attr_sausage':
+
+    ...
+
+Use sausage_serialize method to include it in you ActiveRecord object:
+
+    ...
 
 ## Contributing
 
