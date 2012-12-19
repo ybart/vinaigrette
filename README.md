@@ -39,7 +39,13 @@ Add your attributes using 'attr_sausage':
 
 Use sausage_serialize method to include it in you ActiveRecord object:
 
-    ...
+    class SalmonDish < ActiveRecord::Base
+        include Sausage::Serialize
+
+        ...
+
+        sausage_serialize :sauce, AnethSausage
+    end
 
 ## Contributing
 
