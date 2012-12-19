@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'minitest',  '>= 4.2.0'
   gem.add_development_dependency 'simplecov', '>= 0.3.8'
   gem.add_development_dependency 'mocha',     '>= 0.13.1'
 
