@@ -63,6 +63,20 @@ describe Sausage::Base do
     assert_equal({recipe_id: 42}, sauce.serializable_hash)
   end
 
+  it 'should support invalid casts' do
+    DeliciousSausage.send(:sausage_accessor, :recipe_id, Integer, 42)
+    sauce = DeliciousSausage.new
+    sauce.recipe_id = false
+    assert_equal({recipe_id: 42}, sauce.serializable_hash)
+  end
+
+  it 'should support default values' do
+    DeliciousSausage.send(:sausage_accessor, :name, String, "")
+    sauce = DeliciousSausage.new
+    sauce.name = nil
+    assert_equal({name: ""}, sauce.serializable_hash)
+  end
+
   it 'should support boolean values' do
     DeliciousSausage.send(:sausage_accessor, :has_recipe, 'Boolean', nil)
     sauce = DeliciousSausage.new
@@ -70,6 +84,21 @@ describe Sausage::Base do
     assert_equal({has_recipe: nil}, sauce.serializable_hash)
     sauce.has_recipe = false
     assert_equal({has_recipe: false}, sauce.serializable_hash)
+  end
+
+  it 'should fail casting invalid booleans' do
+    assert_raises ArgumentError do
+      Kernel.Boolean("should not become a boolean")
+    end
+  end
+
+  it 'should cast valid booleans' do
+    assert_equal(false, Kernel.Boolean("false"))
+    assert_equal(false, Kernel.Boolean("no"))
+    assert_equal(false, Kernel.Boolean("0"))
+    assert_equal(true, Kernel.Boolean("true"))
+    assert_equal(true, Kernel.Boolean("yes"))
+    assert_equal(true, Kernel.Boolean("1"))
   end
 
   it 'should support procs' do
