@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require 'mocha/setup'
 
 describe Sausage::Serialize do
   before do
