@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Sausage : Provides a custom serializable ActiveModel object with ActiveModel validations and ActiveRecord associations." />
+    <meta name="description" content="vinaigrette : Provides a custom serializable ActiveModel object with ActiveModel validations and ActiveRecord associations." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Sausage</title>
+    <title>vinaigrette</title>
   </head>
 
   <body>
@@ -16,14 +16,14 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ybart/sausage">View on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/ybart/vinaigrette">View on GitHub</a>
 
-          <h1 id="project_title">Sausage</h1>
+          <h1 id="project_title">vinaigrette</h1>
           <h2 id="project_tagline">Provides a custom serializable ActiveModel object with ActiveModel validations and ActiveRecord associations.</h2>
 
             <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ybart/sausage/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ybart/sausage/tarball/master">Download this project as a tar.gz file</a>
+              <a class="zip_download_link" href="https://github.com/ybart/vinaigrette/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ybart/vinaigrette/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
@@ -31,26 +31,25 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Sausage</h1>
+        <h1>vinaigrette</h1>
 
-<p>Sausage is a gem providing a custom <code>ActiveModel</code> object that can be used
+<p>vinaigrette is a gem providing a custom <code>ActiveModel</code> object that can be used
 as a serialized attribute of an <code>ActiveRecord</code> object.</p>
 
 <h2>Features</h2>
 
-<pre><code>- Serializable ActiveModel objects.
-- Custom accessors with casting support default values.
-- Support for Rails validations.
-- Support for Rails belongs_to associations.
-- Casting of ruby booleans from strings.
-</code></pre>
-
-<h2>Installation</h2>
+<ul>
+<li>Serializable <code>ActiveModel</code> objects.</li>
+<li>Custom accessors with casting support default values.</li>
+<li>Support for Rails validations.</li>
+<li>Support for Rails belongs_to associations.</li>
+<li>Casting of ruby booleans from strings.</li>
+</ul><h2>Installation</h2>
 
 <p>Add this line to your application's Gemfile:</p>
 
-<pre><code>gem 'sausage'
-</code></pre>
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'vinaigrette'</span>
+</pre></div>
 
 <p>And then execute:</p>
 
@@ -59,46 +58,46 @@ as a serialized attribute of an <code>ActiveRecord</code> object.</p>
 
 <p>Or install it yourself as:</p>
 
-<pre><code>$ gem install sausage
+<pre><code>$ gem install vinaigrette
 </code></pre>
 
 <h2>Usage</h2>
 
-<p>Create a custom Sausage::Base subclass:</p>
+<p>Create a custom <code>Vinaigrette::Base</code> subclass:</p>
 
-<pre><code>class AnethSausage &lt; Sausage::Base
-end
-</code></pre>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">AnethSauce</span> <span class="o">&lt;</span> <span class="no">Vinaigrette</span><span class="o">::</span><span class="no">Base</span>
+<span class="k">end</span>
+</pre></div>
 
-<p>Add your attributes using <code>sausage_accessor</code>:</p>
+<p>Add your attributes using <code>vinaigrette_accessor</code>:</p>
 
-<pre><code># Simple string attribute
-sausage_accessor :name, string
+<div class="highlight"><pre><span class="c1"># Simple string attribute</span>
+<span class="n">vinaigrette_accessor</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span>
 
-# With a default value
-sausage_accessor :description, String, "Nothing here!"
+<span class="c1"># With a default value</span>
+<span class="n">vinaigrette_accessor</span> <span class="ss">:description</span><span class="p">,</span> <span class="nb">String</span><span class="p">,</span> <span class="s2">"Nothing here!"</span>
 
-# A Boolean
-sausage_accessor :spicy?, "Boolean", false
+<span class="c1"># A Boolean</span>
+<span class="n">vinaigrette_accessor</span> <span class="ss">:spicy?</span><span class="p">,</span> <span class="s2">"Boolean"</span><span class="p">,</span> <span class="kp">false</span>
 
-# With support for callables
-sausage_accessor :secret, String, lambda { something_secret }
+<span class="c1"># With support for callables</span>
+<span class="n">vinaigrette_accessor</span> <span class="ss">:secret</span><span class="p">,</span> <span class="nb">String</span><span class="p">,</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="n">something_secret</span> <span class="p">}</span>
 
-# You can also create belongs_to associations:
-sausage_accessor :sauce_id, Integer
-belongs_to :sauce
-</code></pre>
+<span class="c1"># You can also create belongs_to associations</span>
+<span class="n">vinaigrette_accessor</span> <span class="ss">:sauce_id</span><span class="p">,</span> <span class="nb">Integer</span>
+<span class="n">belongs_to</span> <span class="ss">:sauce</span>
+</pre></div>
 
-<p>Use <code>sausage_serialize</code> method to include it in you <code>ActiveRecord</code> object:</p>
+<p>Use <code>vinaigrette_serialize</code> method to include it in your <code>ActiveRecord</code> object:</p>
 
-<pre><code>class SalmonDish &lt; ActiveRecord::Base
-    include Sausage::Serialize
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">SalmonDish</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+    <span class="kp">include</span> <span class="no">Vinaigrette</span><span class="o">::</span><span class="no">Serialize</span>
 
-    ...
+    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 
-    sausage_serialize :sauce, AnethSausage
-end
-</code></pre>
+    <span class="n">vinaigrette_serialize</span> <span class="ss">:sauce</span><span class="p">,</span> <span class="no">AnethSauce</span>
+<span class="k">end</span>
+</pre></div>
 
 <h2>Contributing</h2>
 
@@ -115,7 +114,7 @@ end
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Sausage maintained by <a href="https://github.com/ybart">ybart</a></p>
+        <p class="copyright">vinaigrette maintained by <a href="https://github.com/ybart">ybart</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
