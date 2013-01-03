@@ -12,7 +12,7 @@ module Vinaigrette::Model
       include ActiveRecord::Callbacks           # add_autosave_association_callback
     end
 
-    # Associations calls [] to retrieve attributes.
+    # Associations calls [] to retrieve attributes.
     def [] name
       attributes[name]
     end
