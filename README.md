@@ -1,11 +1,11 @@
-# Sausage
+# vinaigrette
 
-Sausage is a gem providing a custom `ActiveModel` object that can be used
+vinaigrette is a gem providing a custom `ActiveModel` object that can be used
 as a serialized attribute of an `ActiveRecord` object.
 
 ## Features
 
-- Serializable ActiveModel objects.
+- Serializable `ActiveModel` objects.
 - Custom accessors with casting support default values.
 - Support for Rails validations.
 - Support for Rails belongs_to associations.
@@ -16,7 +16,7 @@ as a serialized attribute of an `ActiveRecord` object.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sausage'
+gem 'vinaigrette'
 ```
 
 And then execute:
@@ -25,46 +25,46 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install sausage
+    $ gem install vinaigrette
 
 ## Usage
 
-Create a custom Sausage::Base subclass:
+Create a custom `Vinaigrette::Base` subclass:
 
 ```ruby
-class AnethSausage < Sausage::Base
+class AnethSauce < Vinaigrette::Base
 end
 ```
 
-Add your attributes using `sausage_accessor`:
+Add your attributes using `vinaigrette_accessor`:
 
 ```ruby
 # Simple string attribute
-sausage_accessor :name, string
+vinaigrette_accessor :name, String
 
 # With a default value
-sausage_accessor :description, String, "Nothing here!"
+vinaigrette_accessor :description, String, "Nothing here!"
 
 # A Boolean
-sausage_accessor :spicy?, "Boolean", false
+vinaigrette_accessor :spicy?, "Boolean", false
 
 # With support for callables
-sausage_accessor :secret, String, lambda { something_secret }
+vinaigrette_accessor :secret, String, lambda { something_secret }
 
-# You can also create belongs_to associations:
-sausage_accessor :sauce_id, Integer
+# You can also create belongs_to associations
+vinaigrette_accessor :sauce_id, Integer
 belongs_to :sauce
 ```
 
-Use `sausage_serialize` method to include it in you `ActiveRecord` object:
+Use `vinaigrette_serialize` method to include it in your `ActiveRecord` object:
 
 ```ruby
 class SalmonDish < ActiveRecord::Base
-    include Sausage::Serialize
+    include Vinaigrette::Serialize
 
     ...
 
-    sausage_serialize :sauce, AnethSausage
+    vinaigrette_serialize :sauce, AnethSauce
 end
 ```
 

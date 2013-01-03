@@ -9,6 +9,6 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require "minitest/hell"
 
-require File.expand_path('../../lib/sausage.rb', __FILE__)
+require File.expand_path('../../lib/vinaigrette.rb', __FILE__)
 
 require 'mocha/setup'

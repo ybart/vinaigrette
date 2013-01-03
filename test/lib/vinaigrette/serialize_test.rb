@@ -1,16 +1,16 @@
 require_relative '../../test_helper'
 
-describe Sausage::Serialize do
+describe Vinaigrette::Serialize do
   before do
-    Object.send(:remove_const, :DeliciousSausage) if Object.const_defined?(:DeliciousSausage)
+    Object.send(:remove_const, :DeliciousSauce) if Object.const_defined?(:DeliciousSauce)
     Object.send(:remove_const, :SalmonDish) if Object.const_defined?(:SalmonDish)
 
-    class DeliciousSausage
+    class DeliciousSauce
       def initialize attributes={}
       end
     end
     class SalmonDish
-      include Sausage::Serialize
+      include Vinaigrette::Serialize
     end
 
     # Mock an ActiveRecord object with validations
@@ -18,26 +18,26 @@ describe Sausage::Serialize do
     SalmonDish.stubs(:before_validation)
   end
 
-  it 'should call successfully sausage_serialize method' do
-    SalmonDish.send(:sausage_serialize, :sauce, DeliciousSausage)
+  it 'should call successfully vinaigrette_serialize method' do
+    SalmonDish.send(:vinaigrette_serialize, :sauce, DeliciousSauce)
   end
 
   it 'should call serialize with Hash' do
     SalmonDish.expects(:serialize).with(:sauce, Hash).once
-    SalmonDish.send(:sausage_serialize, :sauce, DeliciousSausage)
+    SalmonDish.send(:vinaigrette_serialize, :sauce, DeliciousSauce)
   end
 
   it 'should add errors to outer model' do
     SalmonDish.send(:attr_accessor, :sauce)
-    SalmonDish.send(:sausage_serialize, :sauce, DeliciousSausage)
+    SalmonDish.send(:vinaigrette_serialize, :sauce, DeliciousSauce)
 
     dish = SalmonDish.new
     dish.stubs(:attributes).returns({})
 
-    sauce = DeliciousSausage.new
+    sauce = DeliciousSauce.new
     sauce.stubs(:valid?).returns(false)
     sauce.stubs(:errors).returns([[:taste, 'should be delicious']])
-    DeliciousSausage.stubs(:new).returns(sauce)
+    DeliciousSauce.stubs(:new).returns(sauce)
 
     error_mock = mock()
     error_mock.stubs(:add).with(:sauce, 'taste should be delicious').once
@@ -48,11 +48,11 @@ describe Sausage::Serialize do
 
   it 'should override default Hash accessor' do
     SalmonDish.send(:attr_accessor, :sauce)
-    SalmonDish.send(:sausage_serialize, :sauce, DeliciousSausage)
+    SalmonDish.send(:vinaigrette_serialize, :sauce, DeliciousSauce)
 
     dish = SalmonDish.new
     dish.stubs(:attributes).returns({})
 
-    assert_equal(DeliciousSausage, dish.sauce.class)
+    assert_equal(DeliciousSauce, dish.sauce.class)
   end
 end

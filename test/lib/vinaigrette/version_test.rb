@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 
-describe Sausage do
+describe Vinaigrette do
   it "must be defined" do
-    Sausage::VERSION.wont_be_nil
+    Vinaigrette::VERSION.wont_be_nil
   end
 end

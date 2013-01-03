@@ -1,4 +1,4 @@
-module Sausage::Model
+module Vinaigrette::Model
   module BelongsTo
     extend ActiveSupport::Concern
 

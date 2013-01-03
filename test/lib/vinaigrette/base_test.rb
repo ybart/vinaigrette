@@ -1,21 +1,21 @@
 require_relative '../../test_helper'
 
-describe Sausage::Base do
+describe Vinaigrette::Base do
   before do
-    Object.send(:remove_const, :DeliciousSausage) if Object.const_defined?(:DeliciousSausage)
-    class DeliciousSausage < Sausage::Base; end
+    Object.send(:remove_const, :DeliciousSauce) if Object.const_defined?(:DeliciousSauce)
+    class DeliciousSauce < Vinaigrette::Base; end
   end
 
   it 'should be able to use active model validations' do
-    DeliciousSausage.must_respond_to(:validates)
+    DeliciousSauce.must_respond_to(:validates)
   end
 
   it 'should allow using belongs_to associations' do
-    DeliciousSausage.must_respond_to(:belongs_to)
+    DeliciousSauce.must_respond_to(:belongs_to)
   end
 
   it 'should have required active_record dependencies' do
-    klass = Class.new(Sausage::Base) do
+    klass = Class.new(Vinaigrette::Base) do
       attr_accessor :recipe_id
       belongs_to :recipe
     end
@@ -37,8 +37,8 @@ describe Sausage::Base do
   end
 
   it 'should serialize its attributes' do
-    DeliciousSausage.send(:attr_accessor, :recipe_id)
-    sauce = DeliciousSausage.new
+    DeliciousSauce.send(:attr_accessor, :recipe_id)
+    sauce = DeliciousSauce.new
 
     assert_equal({recipe_id: nil}, sauce.serializable_hash)
 
@@ -49,37 +49,37 @@ describe Sausage::Base do
     assert_equal({recipe_id: "MyRecipe"}, sauce.serializable_hash)
   end
 
-  it 'should support sausage_accessor' do
-    DeliciousSausage.send(:sausage_accessor, :recipe_id, Integer)
-    sauce = DeliciousSausage.new
+  it 'should support vinaigrette_accessor' do
+    DeliciousSauce.send(:vinaigrette_accessor, :recipe_id, Integer)
+    sauce = DeliciousSauce.new
 
     sauce.recipe_id = "42"
     assert_equal({recipe_id: 42}, sauce.serializable_hash)
   end
 
   it 'should support default values' do
-    DeliciousSausage.send(:sausage_accessor, :recipe_id, Integer, 42)
-    sauce = DeliciousSausage.new
+    DeliciousSauce.send(:vinaigrette_accessor, :recipe_id, Integer, 42)
+    sauce = DeliciousSauce.new
     assert_equal({recipe_id: 42}, sauce.serializable_hash)
   end
 
   it 'should support invalid casts' do
-    DeliciousSausage.send(:sausage_accessor, :recipe_id, Integer, 42)
-    sauce = DeliciousSausage.new
+    DeliciousSauce.send(:vinaigrette_accessor, :recipe_id, Integer, 42)
+    sauce = DeliciousSauce.new
     sauce.recipe_id = false
     assert_equal({recipe_id: 42}, sauce.serializable_hash)
   end
 
   it 'should support default values' do
-    DeliciousSausage.send(:sausage_accessor, :name, String, "")
-    sauce = DeliciousSausage.new
+    DeliciousSauce.send(:vinaigrette_accessor, :name, String, "")
+    sauce = DeliciousSauce.new
     sauce.name = nil
     assert_equal({name: ""}, sauce.serializable_hash)
   end
 
   it 'should support boolean values' do
-    DeliciousSausage.send(:sausage_accessor, :has_recipe, 'Boolean', nil)
-    sauce = DeliciousSausage.new
+    DeliciousSauce.send(:vinaigrette_accessor, :has_recipe, 'Boolean', nil)
+    sauce = DeliciousSauce.new
 
     assert_equal({has_recipe: nil}, sauce.serializable_hash)
     sauce.has_recipe = false
@@ -102,9 +102,9 @@ describe Sausage::Base do
   end
 
   it 'should support procs' do
-    DeliciousSausage.send(:sausage_accessor, :recipe_id, Integer, lambda { 42 })
+    DeliciousSauce.send(:vinaigrette_accessor, :recipe_id, Integer, lambda { 42 })
 
-    sauce = DeliciousSausage.new
+    sauce = DeliciousSauce.new
     assert_equal({recipe_id: 42}, sauce.serializable_hash)
   end
 end

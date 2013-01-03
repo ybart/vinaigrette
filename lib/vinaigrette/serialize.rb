@@ -1,10 +1,10 @@
 require 'active_model'
 
-module Sausage::Serialize
+module Vinaigrette::Serialize
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def sausage_serialize attribute_name, klass
+    def vinaigrette_serialize attribute_name, klass
       validation_method = "__validate_#{attribute_name}".to_sym
       accessor_method = attribute_name.to_sym
 

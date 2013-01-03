@@ -7,12 +7,12 @@ module Kernel
   end
 end
 
-module Sausage::Model
+module Vinaigrette::Model
   module Accessor
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def sausage_accessor(accessor, type, default = nil)
+      def vinaigrette_accessor(accessor, type, default = nil)
         supported_attributes = instance_variable_get("@supported_attributes") || []
         supported_attributes.push accessor
         instance_variable_set("@supported_attributes", supported_attributes)
