@@ -5,17 +5,19 @@ as a serialized attribute of an `ActiveRecord` object.
 
 ## Features
 
-    - Serializable ActiveModel objects.
-    - Custom accessors with casting support default values.
-    - Support for Rails validations.
-    - Support for Rails belongs_to associations.
-    - Casting of ruby booleans from strings.
+- Serializable ActiveModel objects.
+- Custom accessors with casting support default values.
+- Support for Rails validations.
+- Support for Rails belongs_to associations.
+- Casting of ruby booleans from strings.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'sausage'
+```ruby
+gem 'sausage'
+```
 
 And then execute:
 
@@ -29,36 +31,42 @@ Or install it yourself as:
 
 Create a custom Sausage::Base subclass:
 
-    class AnethSausage < Sausage::Base
-    end
+```ruby
+class AnethSausage < Sausage::Base
+end
+```
 
 Add your attributes using `sausage_accessor`:
 
-    # Simple string attribute
-    sausage_accessor :name, string
+```ruby
+# Simple string attribute
+sausage_accessor :name, string
 
-    # With a default value
-    sausage_accessor :description, String, "Nothing here!"
+# With a default value
+sausage_accessor :description, String, "Nothing here!"
 
-    # A Boolean
-    sausage_accessor :spicy?, "Boolean", false
+# A Boolean
+sausage_accessor :spicy?, "Boolean", false
 
-    # With support for callables
-    sausage_accessor :secret, String, lambda { something_secret }
+# With support for callables
+sausage_accessor :secret, String, lambda { something_secret }
 
-    # You can also create belongs_to associations:
-    sausage_accessor :sauce_id, Integer
-    belongs_to :sauce
+# You can also create belongs_to associations:
+sausage_accessor :sauce_id, Integer
+belongs_to :sauce
+```
 
 Use `sausage_serialize` method to include it in you `ActiveRecord` object:
 
-    class SalmonDish < ActiveRecord::Base
-        include Sausage::Serialize
+```ruby
+class SalmonDish < ActiveRecord::Base
+    include Sausage::Serialize
 
-        ...
+    ...
 
-        sausage_serialize :sauce, AnethSausage
-    end
+    sausage_serialize :sauce, AnethSausage
+end
+```
 
 ## Contributing
 
