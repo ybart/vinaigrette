@@ -14,7 +14,7 @@ module Vinaigrette::Model
 
     # Associations calls [] to retrieve attributes.
     def [] name
-      attributes[name]
+      attributes[name.to_sym]
     end
 
     # association_cache is assumed to exist by ActiveRecord::Associations

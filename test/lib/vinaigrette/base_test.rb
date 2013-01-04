@@ -49,6 +49,14 @@ describe Vinaigrette::Base do
     assert_equal({recipe_id: "MyRecipe"}, sauce.serializable_hash)
   end
 
+  it 'should support access by name (needed by belongs_to)' do
+    DeliciousSauce.send(:attr_accessor, :recipe_id)
+    sauce = DeliciousSauce.new
+    sauce.recipe_id = 42
+    assert_equal(42, sauce[:recipe_id])
+    assert_equal(42, sauce['recipe_id'])
+  end
+
   it 'should support vinaigrette_accessor' do
     DeliciousSauce.send(:vinaigrette_accessor, :recipe_id, Integer)
     sauce = DeliciousSauce.new
